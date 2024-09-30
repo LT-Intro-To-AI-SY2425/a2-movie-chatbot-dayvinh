@@ -38,10 +38,22 @@ def match(pattern: List[str], source: List[str]) -> List[str]:
               result.append(res)
               return result
             else:
-                return None
+                pind += 1
+                accum = ""
+                while source[sind] != pattern[pind]:
+                    accum += source[sind] + " "
+                    sind += 1
+                    # print(accum)
+
+                    if sind >= len(source):
+                        return None
+                result.append(accum.rstrip())
+                    
+
+                
 
         # 3) if we reached the end of the source but not the pattern
-        elif sind == len(source):
+        elif sind == len(source) and pind < len(pattern):
             return None
         # 4) if the current thing in the pattern is an _
         elif pattern[pind] == '_':
